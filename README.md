@@ -26,9 +26,9 @@ We present the guidelines as a checklist in this README. This means that your te
 - [x] Create a repo using this template repo. Name your repo `Sec#_FP_Name1_Name2_Name3` where `Sec#` is your section of Stat184 (i.e., `Sec1`, `Sec2`, `Sec3`, or `Sec4`) and `Name#` is replaced with the names of each team member.
   - [x] The owner of the repo should be `Stat184-Fall2024`. 
 - [x] Make sure that each team member has access to the repo.
-- [] Come up with a topic and set of research questions your team will explore.
-- [] Make a plan for your work. We suggested putting together your work plan by <mark>Wednesday, Dec. 1, 2024</mark>.
-- [] Locate appropriate data sources for your project.
+- [ ] Come up with a topic and set of research questions your team will explore.
+- [ ] Make a plan for your work. We suggested putting together your work plan by <mark>Wednesday, Dec. 1, 2024</mark>.
+- [ ] Locate appropriate data sources for your project.
   - [ ] Your main data source may __not__ be one that we used in class nor be found in any R package.
   - [ ] Supplementary data sources may come from anywhere.
 - [ ] Read in your data and perform any necessary data wrangling and cleaning.
