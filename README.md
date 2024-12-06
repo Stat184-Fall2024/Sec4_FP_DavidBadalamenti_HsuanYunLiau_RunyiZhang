@@ -28,9 +28,9 @@ We present the guidelines as a checklist in this README. This means that your te
 - [x] Make sure that each team member has access to the repo.
 - [x] Come up with a topic and set of research questions your team will explore.
 - [ ] Make a plan for your work. We suggested putting together your work plan by <mark>Wednesday, Dec. 1, 2024</mark>.
-- [ ] Locate appropriate data sources for your project.
-  - [ ] Your main data source may __not__ be one that we used in class nor be found in any R package.
-  - [ ] Supplementary data sources may come from anywhere.
+- [x] Locate appropriate data sources for your project.
+  - [x] Your main data source may __not__ be one that we used in class nor be found in any R package.
+  - [x] Supplementary data sources may come from anywhere.
 - [ ] Read in your data and perform any necessary data wrangling and cleaning.
 - [ ] Conduct Exploratory Data Analysis.
 - [ ] Prepare a reproducible report.
@@ -44,7 +44,7 @@ We present the guidelines as a checklist in this README. This means that your te
 ````
   - [ ] State your research questions and explain them.
   - [ ] Describe the provenance of your data. That is, where did you get the data, who collected the data, for what purpose, who/what make up the cases.
-  - [ ] Explain how your data meet the FAIR and/or CARE Principles.
+  - [x] Explain how your data meet the FAIR and/or CARE Principles.
   - [ ] Describe what attributes you'll focus your analysis on (mention if they are part of your data sets or if you created them out of your data sets).
   - [ ] Create multiple data visualizations (tables and figures) that assist both the team and readers in understanding the data.
     - [ ] Data visualizations should show a variety of your skills and geometries.
