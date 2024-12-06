@@ -4,13 +4,81 @@ format: pdf
 editor: visual
 ---
 
-## Quarto
+## Data: Auto Scout Car
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Auto scout is the largest pan-European online car market. This dataset provides comprehensive details on used car listings, including vehicle specifications, features, pricing, and more. It's valuable for analyzing car prices, trends, and customer preferences in the automotive market.
 
-## Running Code
+## Research Questions:
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Price Prediction: (scatterplot)
+
+-   What are the key features that can be used to accurately predict car prices?
+
+<!-- -->
+
+-   How does mileage (odometer reading) affect car prices in the used car market?
+
+-   Does fuel type significantly influence car prices?
+
+-   What is the combined impact of performance-related features (e.g., engine size, economy, and cylinders) on car prices?
+
+    Market Analysis:(histogram)
+
+-   What are the most popular car types (e.g., body type, category) in the used car market?
+
+<!-- -->
+
+-   How do car preferences vary by region or location?
+
+-   Are there seasonal or temporal trends in car acquisitions based on acquisition_date or year?
+
+-   What are the most sought-after features (e.g., transmission type, colour, fuel type) among customers in the used car market?
+
+**Explain how your data meet the FAIR and/or CARE Principles:**
+
+**FAIR:**
+
+-   Findable:
+
+    -   dataset found through kaggle, which is a widely recognized and accessible platform for data sharing
+
+    -   includes metadata that describes the dataset structure and its variables, which helps users locate and understand relevant information
+
+-   Accessible:
+
+    -   the dataset is provided in a CSV format
+
+    -   the platform has open access to dataset
+
+-   Interoperable:
+
+    -   the data uses standard and machine readable formats, such as numeric fields for prices and mileage and categorical fields for attributes like fuel type and body type
+
+    -   the metadata provides clear descriptions of fields
+
+Reusable:
+
+-   the data is accompanied by metadata that ensures the attributes, ensuring clarity for reuse
+
+**CARE:**
+
+-   **Collective benefit**:
+
+The dataset enables analyses that can benefit a wide audience, such as consumers, dealers, and researchers
+
+-   **Authority to control**:
+
+    -   the data contains public information on car listings and does not include personal or community-sensitive data
+
+-   **Responsibility:**
+
+    -   the dataset avoids ethical issues by not including personal identifiers or private information
+
+-   **Ethics:**
+
+    -   By excluding sensitive information, the dataset aligns with ethical principles for data usage.
+
+    -   The source (Kaggle) provides transparency about the dataset's origin, licensing, and usage conditions
 
 ```{r}
 1 + 1
