@@ -81,7 +81,10 @@ The dataset enables analyses that can benefit a wide audience, such as consumers
     -   The source (Kaggle) provides transparency about the dataset's origin, licensing, and usage conditions
 
 ```{r}
-1 + 1
+library(readr)
+library(dplyr)
+data <- read.csv("final_scout_not_dummy.csv")
+
 ```
 
 You can add options to executable code like this
