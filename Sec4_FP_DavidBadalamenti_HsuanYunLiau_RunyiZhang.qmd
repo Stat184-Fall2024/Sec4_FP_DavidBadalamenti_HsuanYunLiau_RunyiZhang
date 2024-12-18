@@ -4,37 +4,13 @@ format: pdf
 editor: visual
 ---
 
+# Exploring factors influencing the pricing of used cars
+
 ## Data: Auto Scout Car
 
-Auto scout is the largest pan-European online car market. This dataset provides comprehensive details on used car listings, including vehicle specifications, features, pricing, and more. It's valuable for analyzing car prices, trends, and customer preferences in the automotive market.
+The buying ans selling of vehicles form a critical part of economies worldwide, with online marketplaces playing an increasingly important role in connecting buyers and sellers. Auto Scout, the largest pan-European online car marketplace, provides an extensive dataset detailing used car listings, including specifications, features, and prices. These details offer a valuable opportunity to investigate a pressing question in the automotive market: *What factors significantly influence the pricing of used cars?* In this report, we will explore how variables such as mileage, brand, engine type, and additional features correlate with car prices.
 
-## Research Questions:
-
-Price Prediction: (scatterplot)
-
--   What are the key features that can be used to accurately predict car prices?
-
-<!-- -->
-
--   How does mileage (odometer reading) affect car prices in the used car market?
-
--   Does fuel type significantly influence car prices?
-
--   What is the combined impact of performance-related features (e.g., engine size, economy, and cylinders) on car prices?
-
-    Market Analysis:(histogram)
-
--   What are the most popular car types (e.g., body type, category) in the used car market?
-
-<!-- -->
-
--   How do car preferences vary by region or location?
-
--   Are there seasonal or temporal trends in car acquisitions based on acquisition_date or year?
-
--   What are the most sought-after features (e.g., transmission type, colour, fuel type) among customers in the used car market?
-
-**Explain how your data meet the FAIR and/or CARE Principles:**
+## **Explain how your data meet the FAIR and/or CARE Principles:**
 
 **FAIR:**
 
@@ -80,11 +56,38 @@ The dataset enables analyses that can benefit a wide audience, such as consumers
 
     -   The source (Kaggle) provides transparency about the dataset's origin, licensing, and usage conditions
 
+## Distribution of car models:
+
+To begin with, we generated a histogram visualizing the frequency distribution of car models in the dataset, with the make_model variable on the x-axis and the count of listings on the y-axis. By identifying the models with the highest frequency, we can focus on the top three most common car models for further analysis, which in this case, the Audi A3, Audi A1, and Opel Insignia.
+
 ```{r}
-1 + 1
+library(tidyverse)
+
+data <- read.csv("cleaned_scout_data.csv")
+
+model_counts <- data %>% 
+  group_by(make_model) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count))
+
+top_3_models <- head(model_counts, 3)
+
+library(ggplot2)
+ggplot(data, aes(x = make_model, fill = make_model)) +
+  geom_bar(color = "black") +
+  geom_text(data = top_3_models, aes(x = make_model, y = count, label = count), 
+            vjust = -0.5, color = "black", size = 3) +
+  labs(
+    title = "Histogram of All Car Models",
+    x = "Car Model",
+    y = "Count"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
 ```
 
-You can add options to executable code like this
+Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage, fuel type, and features impact the prices within and across top models.
 
 ```{r}
 #| echo: false
@@ -92,3 +95,7 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+
+```
