@@ -95,13 +95,3 @@ ggplot(data, aes(x = make_model, fill = make_model)) +
 
 Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage, fuel type, and features impact the prices within and across top models.
 
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
-```{r}
-
-```
