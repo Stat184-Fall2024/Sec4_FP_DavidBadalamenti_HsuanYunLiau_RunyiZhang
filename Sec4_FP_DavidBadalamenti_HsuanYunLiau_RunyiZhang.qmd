@@ -14,19 +14,19 @@ The buying ans selling of vehicles form a critical part of economies worldwide, 
 
 **FAIR:**
 
--   Findable:
+-   Find able:
 
-    -   dataset found through kaggle, which is a widely recognized and accessible platform for data sharing
+    -   data set found through Kaggle, which is a widely recognized and accessible platform for data sharing
 
-    -   includes metadata that describes the dataset structure and its variables, which helps users locate and understand relevant information
+    -   includes metadata that describes the data set structure and its variables, which helps users locate and understand relevant information
 
 -   Accessible:
 
-    -   the dataset is provided in a CSV format
+    -   the data set is provided in a CSV format
 
-    -   the platform has open access to dataset
+    -   the platform has open access to data set
 
--   Interoperable:
+-   Inter operable:
 
     -   the data uses standard and machine readable formats, such as numeric fields for prices and mileage and categorical fields for attributes like fuel type and body type
 
@@ -40,7 +40,7 @@ Reusable:
 
 -   **Collective benefit**:
 
-The dataset enables analyses that can benefit a wide audience, such as consumers, dealers, and researchers
+The data set enables analyses that can benefit a wide audience, such as consumers, dealers, and researchers
 
 -   **Authority to control**:
 
@@ -48,24 +48,24 @@ The dataset enables analyses that can benefit a wide audience, such as consumers
 
 -   **Responsibility:**
 
-    -   the dataset avoids ethical issues by not including personal identifiers or private information
+    -   the data set avoids ethical issues by not including personal identifiers or private information
 
 -   **Ethics:**
 
-    -   By excluding sensitive information, the dataset aligns with ethical principles for data usage.
+    -   By excluding sensitive information, the data set aligns with ethical principles for data usage.
 
-    -   The source (Kaggle) provides transparency about the dataset's origin, licensing, and usage conditions
+    -   The source (Kaggle) provides transparency about the data set's origin, licensing, and usage conditions
 
 ## Distribution of car models:
 
 To begin with, we generated a histogram visualizing the frequency distribution of car models in the dataset, with the make_model variable on the x-axis and the count of listings on the y-axis. By identifying the models with the highest frequency, we can focus on the top three most common car models for further analysis, which in this case, the Audi A3, Audi A1, and Opel Insignia.
 
 ```{r}
-<<<<<<< HEAD
+
 library(readr)
 library(dplyr)
 data <- read.csv("final_scout_not_dummy.csv")
-=======
+
 library(tidyverse)
 
 data <- read.csv("cleaned_scout_data.csv")
@@ -89,13 +89,14 @@ ggplot(data, aes(x = make_model, fill = make_model)) +
   ) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
->>>>>>> 2d145591dcc75f145eb44be60b98e93728a889b7
+
 
 ```
 
 Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage and age impact the prices within and across top models. By finding the regressions coefficient for both age and mileage we can see which has a larger impact on the price of the car.
 
 We used a cleaned dataset to get the numerical statistics of what we wanted to look at directly age, price and mileage.
+
 ```{r keyStats, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 #Provides key statistics for price, mileage, and age
 summary_table <- data %>%
@@ -119,10 +120,10 @@ summary_table <- data %>%
 print(summary_table)
       
 ```
+
 Our initial thoughts were that since the Audi A3 has the highest price and the lowest price the effect of the mileage and age of that model would be the largest
 
-##**Age Models**
-The following are the graphs of the age vs price for the three different car models
+\##**Age Models** The following are the graphs of the age vs price for the three different car models
 
 ```{r ageModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
  audi_a3_data <- data %>% filter(make_model == "Audi A3")
@@ -203,8 +204,9 @@ ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
   theme_minimal()
       
 ```
-      
+
 After Visualizing the data with a box plot we create a scatter plot with a regression line to see the change in price by age
+
 ```{r ageScatter, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
  audi_a3_data <- data %>% filter(make_model == "Audi A3")
 
@@ -285,16 +287,13 @@ ggplot(audi_a1_data, aes(x = age, y = price)) +
 #   theme_minimal()
 #       
 ```
-As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car
-##**Age Coefficients**
-For the Audi A3 the coefficient was -2792.16 meaning that per year the price of car decreases by almost 2,800 Euro
-For the Audi A1 the coefficient was -3016.65 decreasing at about 3,000 Euro per year 
-Lastly for the Opel Insignia the coefficient was -6068.48 decreasing at a rate of about 6,000 Euro per year
+
+As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car \##**Age Coefficients** For the Audi A3 the coefficient was -2792.16 meaning that per year the price of car decreases by almost 2,800 Euro For the Audi A1 the coefficient was -3016.65 decreasing at about 3,000 Euro per year Lastly for the Opel Insignia the coefficient was -6068.48 decreasing at a rate of about 6,000 Euro per year
 
 Considering our initial guess that the Audi A3 would have the larger coefficient because of the large difference in the max and min prices seeing the Opel's be more than double was very surprising. When looking at the regression lines and the box plots however it does make a little more sense as the max and min are outliers compared to the majority of the data.
 
-##**Mileage Models**
-Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
+\##**Mileage Models** Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
+
 ```{r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 # #scatter plot
 # ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
@@ -349,9 +348,9 @@ ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
   theme_minimal()
 
 ```
-The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell?
-We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car
-##**Scatter plots**
+
+The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell? We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car \##**Scatter plots**
+
 ```{r mileScatter, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 #Scatter plot
 ggplot(audi_a1_data, aes(x = mileage_km, y = price)) +
@@ -388,11 +387,9 @@ ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
   ) +
   theme_minimal()
 ```
+
 Visually you can see the slope of the Regression line on the Audi A3 mileage was lower than the other two models so it would logically follow that the mileage of the audi has a less affect than the mileage of the other models
 
-##**Mileage Coefficients**
-For the mileage the coefficient is given as the change per mile but that number was in the cents and didn't make sense for the groups we made so we multiplied the coefficient by 50,000 to get the change per 50,000 km 
+\##**Mileage Coefficients** For the mileage the coefficient is given as the change per mile but that number was in the cents and didn't make sense for the groups we made so we multiplied the coefficient by 50,000 to get the change per 50,000 km
 
-For the Audi A3 the coefficient was -3629.50 meaning that per year the price of car decreases by about 3600 Euro
-For the Audi A1 the coefficient was -5532.67 decreasing at about 5,500 Euro per year 
-Lastly for the Opel Insignia the coefficient was -6535.30 decreasing at a rate of about 6,500 Euro per year
+For the Audi A3 the coefficient was -3629.50 meaning that per year the price of car decreases by about 3600 Euro For the Audi A1 the coefficient was -5532.67 decreasing at about 5,500 Euro per year Lastly for the Opel Insignia the coefficient was -6535.30 decreasing at a rate of about 6,500 Euro per year
