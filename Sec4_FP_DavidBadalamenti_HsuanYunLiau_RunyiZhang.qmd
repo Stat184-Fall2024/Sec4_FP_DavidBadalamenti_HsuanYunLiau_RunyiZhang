@@ -8,7 +8,7 @@ editor: visual
 
 ## Data: Auto Scout Car
 
-The buying ans selling of vehicles form a critical part of economies worldwide, with online marketplaces playing an increasingly important role in connecting buyers and sellers. Auto Scout, the largest pan-European online car marketplace, provides an extensive dataset detailing used car listings, including specifications, features, and prices. These details offer a valuable opportunity to investigate a pressing question in the automotive market: *What factors significantly influence the pricing of used cars?* In this report, we will explore how variables such as mileage, brand, engine type, and additional features correlate with car prices.
+The buying ans selling of vehicles form a critical part of economies worldwide, with online marketplaces playing an increasingly important role in connecting buyers and sellers. Auto Scout, the largest pan-European online car marketplace, provides an extensive dataset detailing used car listings, including specifications, features, and prices. These details offer a valuable opportunity to investigate a pressing question in the automotive market: *What factors significantly influence the pricing of used cars?* In this report, we will explore how age and mileage of a vehicle affect the price and find which has a more significant impact.
 
 ## **Explain how your data meet the FAIR and/or CARE Principles:**
 
@@ -93,5 +93,7 @@ ggplot(data, aes(x = make_model, fill = make_model)) +
 
 ```
 
-Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage, fuel type, and features impact the prices within and across top models.
+Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage and age impact the prices within and across top models. By finding the regressions coefficient for both age and mileage we can see which has a larger impact on the price of the car.
+
+
 

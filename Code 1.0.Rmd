@@ -77,6 +77,9 @@ ggplot(audi_a3_data, aes(x = age, y = price)) +
     y = "Price (in units)"
   ) +
   theme_minimal()
+audi_age_model <- lm(price ~ age, data = audi_a3_data)
+summary(audi_age_model)
+
 
 # Boxplot
 ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
@@ -105,6 +108,9 @@ ggplot(opel_insignia_data, aes(x = age, y = price)) +
     y = "Price (in units)"
   ) +
   theme_minimal()
+
+opel_age_model <- lm(price ~ age, data = opel_insignia_data)
+summary(opel_age_model)
 
 # Boxplot
 ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
@@ -135,6 +141,9 @@ ggplot(audi_a1_data, aes(x = age, y = price)) +
     y = "Price (in units)"
   ) +
   theme_minimal()
+
+audi1_age_model <- lm(price ~ age, data = audi_a1_data)
+summary(audi1_age_model)
 
 # Boxplot for price by age for Audi A1
 ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
@@ -168,6 +177,9 @@ ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
   ) +
   theme_minimal()
 
+audi_mile_model <- lm(price ~ mileage_km, data = audi_a3_data)
+summary(audi_mile_model)
+
 # Boxplot
 ggplot(audi_a3_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
                                 labels = c("0-50k", "50k-100k", "100k-150k", "150k-200k", "200k-250k", "250k-300k")),
@@ -181,7 +193,7 @@ ggplot(audi_a3_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
   theme_minimal()
 ```
 
-**Opel Insignia Price vs Age**
+**Opel Insignia Price vs Mileage**
 
 ```{r}
 #Scatter plot
@@ -195,6 +207,9 @@ ggplot(opel_insignia_data, aes(x = mileage_km, y = price)) +
     y = "Price (in units)"
   ) +
   theme_minimal()
+
+opel_age_model <- lm(price ~ mileage_km, data = opel_insignia_data)
+summary(opel_age_model)
 
 # Boxplot
 ggplot(opel_insignia_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
@@ -223,6 +238,9 @@ ggplot(audi_a1_data, aes(x = mileage_km, y = price)) +
     y = "Price (in units)"
   ) +
   theme_minimal()
+
+audi1_age_model <- lm(price ~ mileage_km, data = audi_a1_data)
+summary(audi1_age_model)
 
 # Boxplot
 # This plot shows the distribution of price for each mileage group
