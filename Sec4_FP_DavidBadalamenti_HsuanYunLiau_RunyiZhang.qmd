@@ -118,7 +118,7 @@ For the Audi A3 the coefficient was -3629.50 meaning that per year the price of 
 
 For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increaseing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model
 
-Directly comparing the age to the milage is hard as they have different subgroups
+Directly comparing the age to the milage is hard as they have different subgroups but the comparing the affect of the age or mileage to the different types of cars was much easier. If we were to do further investigations we might try and find what makes some of those cars outliers like what attributes does leads to an extreme price or if it was maybe the seller changing the price of the car beyond what it would actually sell for.
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 #Style Guide: Tidyverse Style Guide (https://style.tidyverse.org/)
