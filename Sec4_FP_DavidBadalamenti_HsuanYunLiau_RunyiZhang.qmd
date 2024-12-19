@@ -118,13 +118,13 @@ For the Audi A3 the coefficient was -3629.50 meaning that per year the price of 
 
 For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increasing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model. This could come from the type of car itself if one is a more sporty car the buyer might feel that the mileage has a larger impact on what they would pay for the vehicle. Some of the key points we found were that the Opel Insignia is affected by both age and mileage the most, we also discovered that while the A3 has the largest gap from minimum car price to maximum car price it was affected the least by age and mileage. 
 
-The cars lose euro cents every kilometer so representing the change in price by mileage as groups of 50,000 km made more sense especially when trying to compare the price vs age and mileage. These changes in the price we are looking at are also a little skewed as you cant inspect the car visually or account for things like damages aswell as if the car had been changed by the owner in anyway.
+The cars lose euro cents every kilometer so representing the change in price by mileage as groups of 50,000 km made more sense especially when trying to compare the price vs age and mileage. It also helped to visually see if the change in price would decrease after a certain point or if the change per group stayed relatively similar These changes in the price we are looking at are also a little skewed as you cant inspect the car visually or account for things like damages aswell as if the car had been changed by the owner in anyway.
 Directly comparing the age to the mileage is hard as they have different subgroups but the comparing the affect of the age or mileage to the different types of cars was much easier. If we were to do further investigations we might try and find what makes some of those cars outliers like what attributes lead to an extreme price or if it was maybe the seller changing the price of the car beyond what it would actually sell for.
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 #Style Guide: Tidyverse Style Guide (https://style.tidyverse.org/)
 {r keyStats, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
-#Provides key statistics for price, mileage, and age
+#Provides statistics for price, mileage, and age
 summary_table <- data %>%
   filter(make_model %in% c("Audi A3", "Opel Insignia", "Audi A1")) %>%
   group_by(make_model) %>%
@@ -213,7 +213,7 @@ ggplot(audi_a1_data, aes(x = age, y = price)) +
 audi1_age_model <- lm(price ~ age, data = audi_a1_data)
 summary(audi1_age_model)
 
-# Boxplot for price by age for Audi A1
+# Boxplot
 ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
   geom_boxplot(fill = "lightgreen") +
   labs(
@@ -223,7 +223,7 @@ ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
   ) +
   theme_minimal()
 {r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
-# #scatter plot
+#scatter plot
 ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, color = "red") +
@@ -263,7 +263,7 @@ ggplot(opel_insignia_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 
   theme_minimal()
 
 # Boxplot
-# This plot shows the distribution of price for each mileage group
+
 ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
                                  labels = c("0-50k", "50k-100k", "100k-150k", "150k-200k", "200k-250k", "250k-300k")),
                          y = price)) +
