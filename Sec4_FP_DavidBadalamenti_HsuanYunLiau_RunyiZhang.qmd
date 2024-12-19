@@ -60,13 +60,70 @@ The data set enables analyses that can benefit a wide audience, such as consumer
 
 To begin with, we generated a histogram visualizing the frequency distribution of car models in the dataset, with the make_model variable on the x-axis and the count of listings on the y-axis. By identifying the models with the highest frequency, we can focus on the top three most common car models for further analysis, which in this case, the Audi A3, Audi A1, and Opel Insignia.
 
+```{r}
+
+library(readr)
+library(dplyr)
+data <- read.csv("final_scout_not_dummy.csv")
+
+library(tidyverse)
+
+data <- read.csv("cleaned_scout_data.csv")
+
+model_counts <- data %>% 
+  group_by(make_model) %>% 
+  summarise(count = n()) %>% 
+  arrange(desc(count))
+
+top_3_models <- head(model_counts, 3)
+
+library(ggplot2)
+ggplot(data, aes(x = make_model, fill = make_model)) +
+  geom_bar(color = "black") +
+  geom_text(data = top_3_models, aes(x = make_model, y = count, label = count), 
+            vjust = -0.5, color = "black", size = 3) +
+  labs(
+    title = "Histogram of All Car Models",
+    x = "Car Model",
+    y = "Count"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
 Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage and age impact the prices within and across top models. By finding the regressions coefficient for both age and mileage we can see which has a larger impact on the price of the car.
 
 We used a cleaned dataset to get the numerical statistics of what we wanted to look at directly age, price and mileage.
 
+```{r keyStats, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+#Provides key statistics for price, mileage, and age
+summary_table <- data %>%
+  filter(make_model %in% c("Audi A3", "Opel Insignia", "Audi A1")) %>%
+  group_by(make_model) %>%
+  summarise(
+    Avg_Price = mean(price, na.rm = TRUE),
+    Median_Price = median(price, na.rm = TRUE),
+    Min_Price = min(price, na.rm = TRUE),
+    Max_Price = max(price, na.rm = TRUE),
+    Avg_Mileage = mean(mileage_km, na.rm = TRUE),
+    Median_Mileage = median(mileage_km, na.rm = TRUE),
+    Min_Mileage = min(mileage_km, na.rm = TRUE),
+    Max_Mileage = max(mileage_km, na.rm = TRUE),
+    Avg_Age = mean(age, na.rm = TRUE),
+    Median_Age = median(age, na.rm = TRUE),
+    Min_Age = min(age, na.rm = TRUE),
+    Max_Age = max(age, na.rm = TRUE)
+  )
+
+print(summary_table)
+      
+```
+
 Our initial thoughts were that since the Audi A3 has the highest price and the lowest price the effect of the mileage and age of that model would be the largest
 
-### Age Models:
+### **Age Models:**
 
 The following are the graphs of the age vs price for the three different car models
 
@@ -76,6 +133,86 @@ The following are the graphs of the age vs price for the three different car mod
 
 ![](images/clipboard-3408631953.png)
 
+```{r ageModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+ audi_a3_data <- data %>% filter(make_model == "Audi A3")
+
+# Scatter plot with regression line
+#ggplot(audi_a3_data, aes(x = age, y = price)) +
+  #geom_point(alpha = 0.6) +
+  #geom_smooth(method = "lm", se = TRUE, color = "red") +
+  #labs(
+    #title = "Price vs Age for Audi A3",
+    #x = "Age (years)",
+    #y = "Price (in units)"
+  #) +
+  #theme_minimal()
+#audi_age_model <- lm(price ~ age, data = audi_a3_data)
+#summary(audi_age_model)
+
+
+# Boxplot
+ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "pink") +
+  labs(
+    title = "Boxplot of Price by Age for Audi A3",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+opel_insignia_data <- data %>% filter(make_model == "Opel Insignia")
+
+# Scatter plot with regression line
+# ggplot(opel_insignia_data, aes(x = age, y = price)) +
+#   geom_point(alpha = 0.6) +
+#   geom_smooth(method = "lm", se = TRUE, color = "blue") +
+#   labs(
+#     title = "Price vs Age for Opel Insignia",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# 
+# opel_age_model <- lm(price ~ age, data = opel_insignia_data)
+# summary(opel_age_model)
+
+# Boxplot
+ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Boxplot of Price by Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+audi_a1_data <- data %>% filter(make_model == "Audi A1")
+
+# Scatter plot with regression line
+# ggplot(audi_a1_data, aes(x = age, y = price)) +
+#   geom_point(alpha = 0.6) +
+#   geom_smooth(method = "lm", se = TRUE, color = "green") +
+#   labs(
+#     title = "Price vs Age for Audi A1",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# 
+# audi1_age_model <- lm(price ~ age, data = audi_a1_data)
+# summary(audi1_age_model)
+
+# Boxplot for price by age for Audi A1
+ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(
+    title = "Boxplot of Price by Age for Audi A1",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+      
+```
+
 After Visualizing the data with a box plot we create a scatter plot with a regression line to see the change in price by age
 
 ![](images/clipboard-3995262045.png)
@@ -84,11 +221,92 @@ After Visualizing the data with a box plot we create a scatter plot with a regre
 
 ![](images/clipboard-429694239.png)
 
-As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car ##Age Coefficients For the Audi A3 the coefficient was -2792.16 meaning that per year the price of car decreases by almost 2,800 Euro For the Audi A1 the coefficient was -3016.65 decreasing at about 3,000 Euro per year For the Opel Insignia the coefficient was -6068.48 decreasing at a rate of about 6,000 Euro per year
+```{r ageScatter, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+ audi_a3_data <- data %>% filter(make_model == "Audi A3")
+
+# Scatter plot with regression line
+ggplot(audi_a3_data, aes(x = age, y = price)) +
+geom_point(alpha = 0.6) +
+geom_smooth(method = "lm", se = TRUE, color = "red") +
+labs(
+title = "Price vs Age for Audi A3",
+x = "Age (years)",
+y = "Price (in units)"
+) +
+theme_minimal()
+
+# audi_age_model <- lm(price ~ age, data = audi_a3_data)
+# summary(audi_age_model)
+# 
+
+# Boxplot
+# ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
+#   geom_boxplot(fill = "pink") +
+#   labs(
+#     title = "Boxplot of Price by Age for Audi A3",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+
+opel_insignia_data <- data %>% filter(make_model == "Opel Insignia")
+
+# Scatter plot with regression line
+ggplot(opel_insignia_data, aes(x = age, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(
+    title = "Price vs Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+# opel_age_model <- lm(price ~ age, data = opel_insignia_data)
+# summary(opel_age_model)
+
+# Boxplot
+# ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
+#   geom_boxplot(fill = "lightblue") +
+#   labs(
+#     title = "Boxplot of Price by Age for Opel Insignia",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# audi_a1_data <- data %>% filter(make_model == "Audi A1")
+
+# Scatter plot with regression line
+ggplot(audi_a1_data, aes(x = age, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "green") +
+  labs(
+    title = "Price vs Age for Audi A1",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+# audi1_age_model <- lm(price ~ age, data = audi_a1_data)
+# summary(audi1_age_model)
+
+# Boxplot for price by age for Audi A1
+# ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
+#   geom_boxplot(fill = "lightgreen") +
+#   labs(
+#     title = "Boxplot of Price by Age for Audi A1",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+#       
+```
+
+As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car \##**Age Coefficients** For the Audi A3 the coefficient was -2792.16 meaning that per year the price of car decreases by almost 2,800 Euro For the Audi A1 the coefficient was -3016.65 decreasing at about 3,000 Euro per year Lastly for the Opel Insignia the coefficient was -6068.48 decreasing at a rate of about 6,000 Euro per year
 
 Considering our initial guess that the Audi A3 would have the larger coefficient because of the large difference in the max and min prices seeing the Opel's be more than double was very surprising. When looking at the regression lines and the box plots however it does make a little more sense as the max and min are outliers compared to the majority of the data.
 
-### Mileage Models:
+### **Mileage Models:**
 
 Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
 
@@ -98,7 +316,62 @@ Following the pattern from the age models we first created box plots of the pric
 
 ![](images/clipboard-1852322627.png)
 
-The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell? We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car ##Scatter plots
+```{r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+# #scatter plot
+# ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
+#   geom_point(alpha = 0.6) +
+#   geom_smooth(method = "lm", se = TRUE, color = "red") +
+#   scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+#   labs(
+#     title = "Price vs Mileage for Audi A3",
+#     x = "Mileage (km)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# 
+# audi_mile_model <- lm(price ~ mileage_km, data = audi_a3_data)
+# summary(audi_mile_model)
+
+# Boxplot
+ggplot(audi_a3_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
+                                labels = c("0-50k", "50k-100k", "100k-150k", "150k-200k", "200k-250k", "250k-300k")),
+                        y = price)) +
+  geom_boxplot(fill = "pink") +
+  labs(
+    title = "Boxplot of Price by Mileage for Audi A3",
+    x = "Mileage Range (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+# Boxplot
+ggplot(opel_insignia_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
+                                     labels = c("0-50k", "50k-100k", "100k-150k", "150k-200k", "200k-250k", "250k-300k")),
+                             y = price)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Boxplot of Price by Mileage for Opel Insignia",
+    x = "Mileage Range (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+# Boxplot
+# This plot shows the distribution of price for each mileage group
+ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
+                                labels = c("0-50k", "50k-100k", "100k-150k", "150k-200k", "200k-250k", "250k-300k")),
+                        y = price)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(
+    title = "Boxplot of Price by Mileage for Audi A1",
+    x = "Mileage Range (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+```
+
+The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell? We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car \##**Scatter plots**
 
 ![](images/clipboard-2463757697.png)
 
@@ -106,24 +379,61 @@ The higher ends of the mileages tend to have less cars, so the higher the mileag
 
 ![](images/clipboard-1177910179.png)
 
+```{r mileScatter, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+#Scatter plot
+ggplot(audi_a1_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "green") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Audi A1",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+#Scatter plot
+ggplot(opel_insignia_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Opel Insignia",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+#scatter plot
+ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Audi A3",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
+
 Visually you can see the slope of the Regression line on the Audi A3 mileage was lower than the other two models so it would logically follow that the mileage of the audi has a less affect than the mileage of the other models
 
-##Mileage Coefficients
+### **Mileage Coefficients:**
 
 For the mileage the coefficient is given as the change per mile but that number was in the cents and didn't make sense for the groups we made so we multiplied the coefficient by 50,000 to get the change per 50,000 km
 
-For the Audi A3 the coefficient was -3629.50 meaning that per year the price of car decreases by about 3600 Euro For the Audi A1 the coefficient was -5532.67 decreasing at about 5,500 Euro per year For the Opel Insignia the coefficient was -6535.30 decreasing at a rate of about 6,500 Euro per year
+For the Audi A3 the coefficient was -3629.50 meaning that per year the price of car decreases by about 3600 Euro For the Audi A1 the coefficient was -5532.67 decreasing at about 5,500 Euro per year Lastly for the Opel Insignia the coefficient was -6535.30 decreasing at a rate of about 6,500 Euro per year
 
 ### Conclusion:
 
-For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increaseing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model
+For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increasing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model. This could come from the type of car itself if one is a more sporty car the buyer might feel that the mileage has a larger impact on what they would pay for the vehicle. Some of the key points we found were that the Opel Insignia is affected by both age and mileage the most, we also discovered that while the A3 has the largest gap from minimum car price to maximum car price it was affected the least by age and mileage.
 
-Directly comparing the age to the milage is hard as they have different subgroups but the comparing the affect of the age or mileage to the different types of cars was much easier. If we were to do further investigations we might try and find what makes some of those cars outliers like what attributes does leads to an extreme price or if it was maybe the seller changing the price of the car beyond what it would actually sell for.
+The cars lose euro cents every kilometer so representing the change in price by mileage as groups of 50,000 km made more sense especially when trying to compare the price vs age and mileage. It also helped to visually see if the change in price would decrease after a certain point or if the change per group stayed relatively similar These changes in the price we are looking at are also a little skewed as you cant inspect the car visually or account for things like damages aswell as if the car had been changed by the owner in anyway. Directly comparing the age to the mileage is hard as they have different subgroups but the comparing the affect of the age or mileage to the different types of cars was much easier. If we were to do further investigations we might try and find what makes some of those cars outliers like what attributes lead to an extreme price or if it was maybe the seller changing the price of the car beyond what it would actually sell for.
 
-```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+```{r}
 #Style Guide: Tidyverse Style Guide (https://style.tidyverse.org/)
 {r keyStats, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
-#Provides key statistics for price, mileage, and age
+#Provides statistics for price, mileage, and age
 summary_table <- data %>%
   filter(make_model %in% c("Audi A3", "Opel Insignia", "Audi A1")) %>%
   group_by(make_model) %>%
@@ -212,7 +522,7 @@ ggplot(audi_a1_data, aes(x = age, y = price)) +
 audi1_age_model <- lm(price ~ age, data = audi_a1_data)
 summary(audi1_age_model)
 
-# Boxplot for price by age for Audi A1
+# Boxplot
 ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
   geom_boxplot(fill = "lightgreen") +
   labs(
@@ -222,7 +532,7 @@ ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
   ) +
   theme_minimal()
 {r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
-# #scatter plot
+#scatter plot
 ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, color = "red") +
@@ -262,7 +572,7 @@ ggplot(opel_insignia_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 
   theme_minimal()
 
 # Boxplot
-# This plot shows the distribution of price for each mileage group
+
 ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
                                  labels = c("0-50k", "50k-100k", "100k-150k", "150k-200k", "200k-250k", "250k-300k")),
                          y = price)) +
@@ -276,6 +586,8 @@ ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
 
 ```
 
-### Citation:
+### Citations:
 
 Turan. (2024, December 2). Auto scout car price. Kaggle. <https://www.kaggle.com/datasets/yaaryiitturan/auto-scout-car-price>
+
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016. <https://ggplot2.tidyverse.org>
