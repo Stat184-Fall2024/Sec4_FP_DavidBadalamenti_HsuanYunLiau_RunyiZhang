@@ -8,7 +8,7 @@ editor: visual
 
 ## Data: Auto Scout Car
 
-The buying ans selling of vehicles form a critical part of economies worldwide, with online marketplaces playing an increasingly important role in connecting buyers and sellers. Auto Scout, the largest pan-European online car marketplace, provides an extensive dataset detailing used car listings, including specifications, features, and prices. These details offer a valuable opportunity to investigate a pressing question in the automotive market: *What factors significantly influence the pricing of used cars?* In this report, we will explore how variables such as mileage, brand, engine type, and additional features correlate with car prices.
+The buying and selling of vehicles are vital components of economies worldwide, with online marketplaces becoming increasingly important in linking buyers and sellers. Auto Scout, the largest pan-European online car marketplace, offers a comprehensive dataset on used car listings, including specifications, features, and pricing. This dataset provides a valuable opportunity to address a key question in the automotive market: What factors significantly influence the pricing of used cars? In this report, we focus on two critical variables—mileage and age—and analyze how they correlate with car pricing.
 
 ## **Explain how your data meet the FAIR and/or CARE Principles:**
 
@@ -61,11 +61,6 @@ The dataset enables analyses that can benefit a wide audience, such as consumers
 To begin with, we generated a histogram visualizing the frequency distribution of car models in the dataset, with the make_model variable on the x-axis and the count of listings on the y-axis. By identifying the models with the highest frequency, we can focus on the top three most common car models for further analysis, which in this case, the Audi A3, Audi A1, and Opel Insignia.
 
 ```{r}
-<<<<<<< HEAD
-library(readr)
-library(dplyr)
-data <- read.csv("final_scout_not_dummy.csv")
-=======
 library(tidyverse)
 
 data <- read.csv("cleaned_scout_data.csv")
@@ -89,9 +84,127 @@ ggplot(data, aes(x = make_model, fill = make_model)) +
   ) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
->>>>>>> 2d145591dcc75f145eb44be60b98e93728a889b7
 
 ```
 
-Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage, fuel type, and features impact the prices within and across top models.
+Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables mileage and age impact the prices within and across top models.
 
+## Summary Table:
+
+The summary table provides a comprehensive overview of key statistics for the top three car models of interest: Audi A3, Opel Insignia, and Audi A1. By focusing on price, mileage, and age, the table provides the basic summary statistics for each variable within these models. These insights set the foundation for our next steps, where we will explore the relationships between price and other factors, specifically analyzing how vehicle age and mileage influence the pricing of these popular car models.
+
+```{r}
+summary_table <- data %>%
+  filter(make_model %in% c("Audi A3", "Opel Insignia", "Audi A1")) %>%
+  group_by(make_model) %>%
+  summarise(
+    Avg_Price = mean(price, na.rm = TRUE),
+    Median_Price = median(price, na.rm = TRUE),
+    Min_Price = min(price, na.rm = TRUE),
+    Max_Price = max(price, na.rm = TRUE),
+    Avg_Mileage = mean(mileage_km, na.rm = TRUE),
+    Median_Mileage = median(mileage_km, na.rm = TRUE),
+    Min_Mileage = min(mileage_km, na.rm = TRUE),
+    Max_Mileage = max(mileage_km, na.rm = TRUE),
+    Avg_Age = mean(age, na.rm = TRUE),
+    Median_Age = median(age, na.rm = TRUE),
+    Min_Age = min(age, na.rm = TRUE),
+    Max_Age = max(age, na.rm = TRUE)
+  )
+
+print(summary_table)
+```
+
+## Price vs Age:
+
+### Audi A3:
+
+```{r}
+# Boxplot
+ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "pink") +
+  labs(
+    title = "Boxplot of Price by Age for Audi A3",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
+
+### Opel Insignia:
+
+```{r}
+# Boxplot
+ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Boxplot of Price by Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
+
+### Audi A1:
+
+```{r}
+# Boxplot
+ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Boxplot of Price by Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
+
+## Price vs Mileage:
+
+### Audi A3
+
+```{r}
+#scatter plot
+ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Audi A3",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
+
+### Opel Insignia
+
+```{r}
+#Scatter plot
+ggplot(opel_insignia_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Opel Insignia",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
+
+### Audi A1
+
+```{r}
+#Scatter plot
+ggplot(audi_a1_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "green") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Audi A1",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+```
