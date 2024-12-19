@@ -42,24 +42,24 @@ We present the guidelines as a checklist in this README. This means that your te
       ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
       ```
 ````
-  - [ ] State your research questions and explain them.
+  - [x] State your research questions and explain them.
   - [x] Describe the provenance of your data. That is, where did you get the data, who collected the data, for what purpose, who/what make up the cases.
   - [x] Explain how your data meet the FAIR and/or CARE Principles.
-  - [ ] Describe what attributes you'll focus your analysis on (mention if they are part of your data sets or if you created them out of your data sets).
-  - [ ] Create multiple data visualizations (tables and figures) that assist both the team and readers in understanding the data.
-    - [ ] Data visualizations should show a variety of your skills and geometries.
+  - [x] Describe what attributes you'll focus your analysis on (mention if they are part of your data sets or if you created them out of your data sets).
+  - [x] Create multiple data visualizations (tables and figures) that assist both the team and readers in understanding the data.
+    - [x] Data visualizations should show a variety of your skills and geometries.
     - [ ] __Optional__: If your research question/data make sense to do so, try creating a map.
-    - [ ] Data visualizations should be appropriately sized--not too small and not too big.
+    - [x] Data visualizations should be appropriately sized--not too small and not too big.
     - [ ] Figures and Tables should have appropriate captions and appropriately cross-referenced in the body of your report.
     - [ ] Your team must produce at least one table that is *not* a display of raw data.
-    - [ ] Your team must produce at least one plot/graph.
-    - [ ] There should be narrative text helping readers to better understand what the visualization helps them to learn about the data and context.
-  - [ ] Your report should narrative text (beyond explaining tables and figures) that explains the context and helps the reader make sense of what is going on.
+    - [x] Your team must produce at least one plot/graph.
+    - [x] There should be narrative text helping readers to better understand what the visualization helps them to learn about the data and context.
+  - [x] Your report should narrative text (beyond explaining tables and figures) that explains the context and helps the reader make sense of what is going on.
   - [ ] __Optional:__ For those who want to challenge themselves further, feel free to include a section on using other statistical methods such as hypothesis testing, regression, ANOVA, or machine learning--see Chapter 18 of the Data Computing eBook.
   - [ ]  You should properly cite any work you reference (including data) according to your choice of citation style. We've included files for APA7 and MLA9 as part of this template. If you want to use a different citation style, you will need download the CSL file from the [Zotero Style Respository](https://www.zotero.org/styles/) and include it in your team's repo.
     - __Fail Safe:__ You can also put your citations as footnotes. 
-- [ ] Use GitHub to share changes and edits; there should be multiple commits to your repo.
-  - [ ] Each team member must have at least two (2) commits in the repo's history.
+- [x] Use GitHub to share changes and edits; there should be multiple commits to your repo.
+  - [x] Each team member must have at least two (2) commits in the repo's history.
   - [ ] There should be at must be at least one Pull Request that resulted in a successful merging of two branches.
   - [ ] One team member should create the Pull Request while a *different* team member should review and complete the Pull Request.
   - [ ] Ensure that your instructor has access to your repo.

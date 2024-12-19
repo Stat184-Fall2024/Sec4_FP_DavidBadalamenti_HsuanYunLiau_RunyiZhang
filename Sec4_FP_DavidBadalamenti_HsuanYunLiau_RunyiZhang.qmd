@@ -123,7 +123,8 @@ print(summary_table)
 
 Our initial thoughts were that since the Audi A3 has the highest price and the lowest price the effect of the mileage and age of that model would be the largest
 
-\##**Age Models** The following are the graphs of the age vs price for the three different car models
+##**Age Models** 
+The following are the graphs of the age vs price for the three different car models
 
 ![](images/clipboard-284795221.png)
 
@@ -300,11 +301,14 @@ ggplot(audi_a1_data, aes(x = age, y = price)) +
 #       
 ```
 
-As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car \##**Age Coefficients** For the Audi A3 the coefficient was -2792.16 meaning that per year the price of car decreases by almost 2,800 Euro For the Audi A1 the coefficient was -3016.65 decreasing at about 3,000 Euro per year Lastly for the Opel Insignia the coefficient was -6068.48 decreasing at a rate of about 6,000 Euro per year
+As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car 
+##**Age Coefficients** 
+For the Audi A3 the coefficient was -2792.16 meaning that per year the price of car decreases by almost 2,800 Euro For the Audi A1 the coefficient was -3016.65 decreasing at about 3,000 Euro per year Lastly for the Opel Insignia the coefficient was -6068.48 decreasing at a rate of about 6,000 Euro per year
 
 Considering our initial guess that the Audi A3 would have the larger coefficient because of the large difference in the max and min prices seeing the Opel's be more than double was very surprising. When looking at the regression lines and the box plots however it does make a little more sense as the max and min are outliers compared to the majority of the data.
 
-\##**Mileage Models** Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
+##**Mileage Models** 
+Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
 
 ![](images/clipboard-3024425807.png)
 
@@ -367,7 +371,8 @@ ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
 
 ```
 
-The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell? We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car \##**Scatter plots**
+The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell? We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car 
+##**Scatter plots**
 
 ![](images/clipboard-2463757697.png)
 
@@ -414,6 +419,10 @@ ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
 
 Visually you can see the slope of the Regression line on the Audi A3 mileage was lower than the other two models so it would logically follow that the mileage of the audi has a less affect than the mileage of the other models
 
-\##**Mileage Coefficients** For the mileage the coefficient is given as the change per mile but that number was in the cents and didn't make sense for the groups we made so we multiplied the coefficient by 50,000 to get the change per 50,000 km
+##**Mileage Coefficients** 
+For the mileage the coefficient is given as the change per mile but that number was in the cents and didn't make sense for the groups we made so we multiplied the coefficient by 50,000 to get the change per 50,000 km
 
 For the Audi A3 the coefficient was -3629.50 meaning that per year the price of car decreases by about 3600 Euro For the Audi A1 the coefficient was -5532.67 decreasing at about 5,500 Euro per year Lastly for the Opel Insignia the coefficient was -6535.30 decreasing at a rate of about 6,500 Euro per year
+
+##**Conclusion**
+
