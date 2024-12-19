@@ -25,17 +25,17 @@ print(summary_table)
 audi_a3_data <- data %>% filter(make_model == "Audi A3")
 
 # Scatter plot with regression line
-#ggplot(audi_a3_data, aes(x = age, y = price)) +
-#geom_point(alpha = 0.6) +
-#geom_smooth(method = "lm", se = TRUE, color = "red") +
-#labs(
-#title = "Price vs Age for Audi A3",
-#x = "Age (years)",
-#y = "Price (in units)"
-#) +
-#theme_minimal()
-#audi_age_model <- lm(price ~ age, data = audi_a3_data)
-#summary(audi_age_model)
+ggplot(audi_a3_data, aes(x = age, y = price)) +
+geom_point(alpha = 0.6) +
+geom_smooth(method = "lm", se = TRUE, color = "red") +
+labs(
+title = "Price vs Age for Audi A3",
+x = "Age (years)",
+y = "Price (in units)"
+) +
+theme_minimal()
+audi_age_model <- lm(price ~ age, data = audi_a3_data)
+summary(audi_age_model)
 
 
 # Boxplot
@@ -51,18 +51,18 @@ ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
 opel_insignia_data <- data %>% filter(make_model == "Opel Insignia")
 
 # Scatter plot with regression line
-# ggplot(opel_insignia_data, aes(x = age, y = price)) +
-#   geom_point(alpha = 0.6) +
-#   geom_smooth(method = "lm", se = TRUE, color = "blue") +
-#   labs(
-#     title = "Price vs Age for Opel Insignia",
-#     x = "Age (years)",
-#     y = "Price (in units)"
-#   ) +
-#   theme_minimal()
-# 
-# opel_age_model <- lm(price ~ age, data = opel_insignia_data)
-# summary(opel_age_model)
+ggplot(opel_insignia_data, aes(x = age, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(
+    title = "Price vs Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+opel_age_model <- lm(price ~ age, data = opel_insignia_data)
+summary(opel_age_model)
 
 # Boxplot
 ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
@@ -76,18 +76,18 @@ ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
 audi_a1_data <- data %>% filter(make_model == "Audi A1")
 
 # Scatter plot with regression line
-# ggplot(audi_a1_data, aes(x = age, y = price)) +
-#   geom_point(alpha = 0.6) +
-#   geom_smooth(method = "lm", se = TRUE, color = "green") +
-#   labs(
-#     title = "Price vs Age for Audi A1",
-#     x = "Age (years)",
-#     y = "Price (in units)"
-#   ) +
-#   theme_minimal()
-# 
-# audi1_age_model <- lm(price ~ age, data = audi_a1_data)
-# summary(audi1_age_model)
+ggplot(audi_a1_data, aes(x = age, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "green") +
+  labs(
+    title = "Price vs Age for Audi A1",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+audi1_age_model <- lm(price ~ age, data = audi_a1_data)
+summary(audi1_age_model)
 
 # Boxplot for price by age for Audi A1
 ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
@@ -100,19 +100,19 @@ ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
   theme_minimal()
 {r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 # #scatter plot
-# ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
-#   geom_point(alpha = 0.6) +
-#   geom_smooth(method = "lm", se = TRUE, color = "red") +
-#   scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
-#   labs(
-#     title = "Price vs Mileage for Audi A3",
-#     x = "Mileage (km)",
-#     y = "Price (in units)"
-#   ) +
-#   theme_minimal()
-# 
-# audi_mile_model <- lm(price ~ mileage_km, data = audi_a3_data)
-# summary(audi_mile_model)
+ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  scale_x_continuous(labels = scales::comma, breaks = seq(0, 300000, by = 50000)) +
+  labs(
+    title = "Price vs Mileage for Audi A3",
+    x = "Mileage (km)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+audi_mile_model <- lm(price ~ mileage_km, data = audi_a3_data)
+summary(audi_mile_model)
 
 # Boxplot
 ggplot(audi_a3_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
