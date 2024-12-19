@@ -179,6 +179,15 @@ ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
 
 audi_mile_model <- lm(price ~ mileage_km, data = audi_a3_data)
 summary(audi_mile_model)
+mileage_coeff <- coef(audi_age_model)["mileage_km"]
+print(mileage_coeff)
+# Multiply the coefficient by 50,000 and 10,000
+mileage_50k_effect <- mileage_coeff * 50000
+mileage_10k_effect <- mileage_coeff * 10000
+
+# Print the results
+print(mileage_50k_effect)
+print(mileage_10k_effect)
 
 # Boxplot
 ggplot(audi_a3_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
@@ -210,6 +219,16 @@ ggplot(opel_insignia_data, aes(x = mileage_km, y = price)) +
 
 opel_age_model <- lm(price ~ mileage_km, data = opel_insignia_data)
 summary(opel_age_model)
+mileage_coeff <- coef(opel_age_model)["mileage_km"]
+
+# Multiply the coefficient by 50,000 and 10,000
+mileage_50k_effect <- mileage_coeff * 50000
+mileage_10k_effect <- mileage_coeff * 10000
+
+# Print the results
+print(mileage_50k_effect)
+print(mileage_10k_effect)
+
 
 # Boxplot
 ggplot(opel_insignia_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000, 200000, 250000, 300000),
@@ -241,6 +260,16 @@ ggplot(audi_a1_data, aes(x = mileage_km, y = price)) +
 
 audi1_age_model <- lm(price ~ mileage_km, data = audi_a1_data)
 summary(audi1_age_model)
+mileage_coeff <- coef(audi1_age_model)["mileage_km"]
+
+# Multiply the coefficient by 50,000 and 10,000
+mileage_50k_effect <- mileage_coeff * 50000
+mileage_10k_effect <- mileage_coeff * 10000
+
+# Print the results
+print(mileage_50k_effect)
+print(mileage_10k_effect)
+
 
 # Boxplot
 # This plot shows the distribution of price for each mileage group
