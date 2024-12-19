@@ -8,7 +8,7 @@ editor: visual
 
 ## Data: Auto Scout Car
 
-The buying ans selling of vehicles form a critical part of economies worldwide, with online marketplaces playing an increasingly important role in connecting buyers and sellers. Auto Scout, the largest pan-European online car marketplace, provides an extensive dataset detailing used car listings, including specifications, features, and prices. These details offer a valuable opportunity to investigate a pressing question in the automotive market: *What factors significantly influence the pricing of used cars?* In this report, we will explore how age and mileage of a vehicle affect the price and find which has a more significant impact.
+The buying ans selling of vehicles form a critical part of economies worldwide, with online marketplaces playing an increasingly important role in connecting buyers and sellers. Auto Scout, the largest pan-European online car marketplace, provides an extensive data set detailing used car listings, including specifications, features, and prices. These details offer a valuable opportunity to investigate a pressing question in the automotive market: *What factors significantly influence the pricing of used cars?* In this report, we will explore how age and mileage of a vehicle affect the price and find which has a more significant impact.
 
 ## **Explain how your data meet the FAIR and/or CARE Principles:**
 
@@ -58,15 +58,15 @@ The data set enables analyses that can benefit a wide audience, such as consumer
 
 ## Distribution of car models:
 
-To begin with, we generated a histogram visualizing the frequency distribution of car models in the dataset, with the make_model variable on the x-axis and the count of listings on the y-axis. By identifying the models with the highest frequency, we can focus on the top three most common car models for further analysis, which in this case, the Audi A3, Audi A1, and Opel Insignia.
+To begin with, we generated a histogram visualizing the frequency distribution of car models in the data set, with the make_model variable on the x-axis and the count of listings on the y-axis. By identifying the models with the highest frequency, we can focus on the top three most common car models for further analysis, which in this case, the Audi A3, Audi A1, and Opel Insignia.
 
 Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage and age impact the prices within and across top models. By finding the regressions coefficient for both age and mileage we can see which has a larger impact on the price of the car.
 
-We used a cleaned dataset to get the numerical statistics of what we wanted to look at directly age, price and mileage.
+We used a cleaned data set to get the numerical statistics of what we wanted to look at directly age, price and mileage.
 
 Our initial thoughts were that since the Audi A3 has the highest price and the lowest price the effect of the mileage and age of that model would be the largest
 
-##Age Models 
+##Age Models
 
 The following are the graphs of the age vs price for the three different car models
 
@@ -116,14 +116,11 @@ For the Audi A3 the coefficient was -3629.50 meaning that per year the price of 
 
 ##Conclusion
 
-For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increasing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model. This could come from the type of car itself if one is a more sporty car the buyer might feel that the mileage has a larger impact on what they would pay for the vehicle. Some of the key points we found were that the Opel Insignia is affected by both age and mileage the most, we also discovered that while the A3 has the largest gap from minimum car price to maximum car price it was affected the least by age and mileage. 
+For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increasing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model. This could come from the type of car itself if one is a more sporty car the buyer might feel that the mileage has a larger impact on what they would pay for the vehicle. Some of the key points we found were that the Opel Insignia is affected by both age and mileage the most, we also discovered that while the A3 has the largest gap from minimum car price to maximum car price it was affected the least by age and mileage.
 
-The cars lose euro cents every kilometer so representing the change in price by mileage as groups of 50,000 km made more sense especially when trying to compare the price vs age and mileage. It also helped to visually see if the change in price would decrease after a certain point or if the change per group stayed relatively similar These changes in the price we are looking at are also a little skewed as you cant inspect the car visually or account for things like damages aswell as if the car had been changed by the owner in anyway.
-Directly comparing the age to the mileage is hard as they have different subgroups but the comparing the affect of the age or mileage to the different types of cars was much easier. If we were to do further investigations we might try and find what makes some of those cars outliers like what attributes lead to an extreme price or if it was maybe the seller changing the price of the car beyond what it would actually sell for.
+The cars lose euro cents every kilometer so representing the change in price by mileage as groups of 50,000 km made more sense especially when trying to compare the price vs age and mileage. It also helped to visually see if the change in price would decrease after a certain point or if the change per group stayed relatively similar These changes in the price we are looking at are also a little skewed as you cant inspect the car visually or account for things like damages aswell as if the car had been changed by the owner in anyway. Directly comparing the age to the mileage is hard as they have different subgroups but the comparing the affect of the age or mileage to the different types of cars was much easier. If we were to do further investigations we might try and find what makes some of those cars outliers like what attributes lead to an extreme price or if it was maybe the seller changing the price of the car beyond what it would actually sell for.
 
 ##Citations
-
-
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 #Style Guide: Tidyverse Style Guide (https://style.tidyverse.org/)
