@@ -125,6 +125,12 @@ Our initial thoughts were that since the Audi A3 has the highest price and the l
 
 \##**Age Models** The following are the graphs of the age vs price for the three different car models
 
+![](images/clipboard-284795221.png)
+
+![](images/clipboard-1779999206.png)
+
+![](images/clipboard-3408631953.png)
+
 ```{r ageModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
  audi_a3_data <- data %>% filter(make_model == "Audi A3")
 
@@ -206,6 +212,12 @@ ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
 ```
 
 After Visualizing the data with a box plot we create a scatter plot with a regression line to see the change in price by age
+
+![](images/clipboard-3995262045.png)
+
+![](images/clipboard-1650399215.png)
+
+![](images/clipboard-429694239.png)
 
 ```{r ageScatter, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
  audi_a3_data <- data %>% filter(make_model == "Audi A3")
@@ -294,6 +306,12 @@ Considering our initial guess that the Audi A3 would have the larger coefficient
 
 \##**Mileage Models** Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
 
+![](images/clipboard-3024425807.png)
+
+![](images/clipboard-3459504343.png)
+
+![](images/clipboard-1852322627.png)
+
 ```{r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 # #scatter plot
 # ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
@@ -350,6 +368,12 @@ ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
 ```
 
 The higher ends of the mileages tend to have less cars, so the higher the mileage the less likely someone is to sell? We next got modeled a scatter plot just as we did with age to get a regression model and find the regression coefficient for each car \##**Scatter plots**
+
+![](images/clipboard-2463757697.png)
+
+![](images/clipboard-2929786900.png)
+
+![](images/clipboard-1177910179.png)
 
 ```{r mileScatter, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
 #Scatter plot
