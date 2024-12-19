@@ -66,7 +66,7 @@ We used a cleaned dataset to get the numerical statistics of what we wanted to l
 
 Our initial thoughts were that since the Audi A3 has the highest price and the lowest price the effect of the mileage and age of that model would be the largest
 
-##Age Models 
+### Age Models:
 
 The following are the graphs of the age vs price for the three different car models
 
@@ -88,7 +88,7 @@ As expected the age has a large affect on the price of the car decreasing over t
 
 Considering our initial guess that the Audi A3 would have the larger coefficient because of the large difference in the max and min prices seeing the Opel's be more than double was very surprising. When looking at the regression lines and the box plots however it does make a little more sense as the max and min are outliers compared to the majority of the data.
 
-##Mileage Models
+### Mileage Models:
 
 Following the pattern from the age models we first created box plots of the price vs the mileage for each of the cars, since unlike age the mileage is a lot more distributed we grouped them by every 50,000 Kilometers
 
@@ -114,7 +114,7 @@ For the mileage the coefficient is given as the change per mile but that number 
 
 For the Audi A3 the coefficient was -3629.50 meaning that per year the price of car decreases by about 3600 Euro For the Audi A1 the coefficient was -5532.67 decreasing at about 5,500 Euro per year For the Opel Insignia the coefficient was -6535.30 decreasing at a rate of about 6,500 Euro per year
 
-##Conclusion
+### Conclusion:
 
 For the three cars the Opel Insignia was affected the most by age and mileage having the largest decrease per year and per mile than either Audi Model. The Audi A3 was affected less than the A1 model in both age and mileage but the A1 had a much larger difference from age to mileage than the A3 increaseing from -3016.65 to -5532.67 while the A3 model only increased from -2792.16 to -3629.50 this shows us that the mileage of the A1 had a larger impact on the price that the mileage on the A3 model
 
@@ -275,3 +275,7 @@ ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
   theme_minimal()
 
 ```
+
+### Citation:
+
+Turan. (2024, December 2). Auto scout car price. Kaggle. <https://www.kaggle.com/datasets/yaaryiitturan/auto-scout-car-price>
