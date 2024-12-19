@@ -254,6 +254,8 @@ ggplot(audi_a1_data, aes(x = cut(mileage_km, breaks = c(0, 50000, 100000, 150000
     y = "Price (in units)"
   ) +
   theme_minimal()
+
+
 ```
 
 

@@ -95,5 +95,169 @@ ggplot(data, aes(x = make_model, fill = make_model)) +
 
 Choosing larger sample size for these models ensures the results are statistically reliable and can help better evaluate how variables like mileage and age impact the prices within and across top models. By finding the regressions coefficient for both age and mileage we can see which has a larger impact on the price of the car.
 
+** Age models ** 
+The following are the graphs of the age vs price for the three different car models
 
+```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+ audi_a3_data <- data %>% filter(make_model == "Audi A3")
+
+# Scatter plot with regression line
+#ggplot(audi_a3_data, aes(x = age, y = price)) +
+  #geom_point(alpha = 0.6) +
+  #geom_smooth(method = "lm", se = TRUE, color = "red") +
+  #labs(
+    #title = "Price vs Age for Audi A3",
+    #x = "Age (years)",
+    #y = "Price (in units)"
+  #) +
+  #theme_minimal()
+#audi_age_model <- lm(price ~ age, data = audi_a3_data)
+#summary(audi_age_model)
+
+
+# Boxplot
+ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "pink") +
+  labs(
+    title = "Boxplot of Price by Age for Audi A3",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+opel_insignia_data <- data %>% filter(make_model == "Opel Insignia")
+
+# Scatter plot with regression line
+# ggplot(opel_insignia_data, aes(x = age, y = price)) +
+#   geom_point(alpha = 0.6) +
+#   geom_smooth(method = "lm", se = TRUE, color = "blue") +
+#   labs(
+#     title = "Price vs Age for Opel Insignia",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# 
+# opel_age_model <- lm(price ~ age, data = opel_insignia_data)
+# summary(opel_age_model)
+
+# Boxplot
+ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Boxplot of Price by Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+audi_a1_data <- data %>% filter(make_model == "Audi A1")
+
+# Scatter plot with regression line
+# ggplot(audi_a1_data, aes(x = age, y = price)) +
+#   geom_point(alpha = 0.6) +
+#   geom_smooth(method = "lm", se = TRUE, color = "green") +
+#   labs(
+#     title = "Price vs Age for Audi A1",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# 
+# audi1_age_model <- lm(price ~ age, data = audi_a1_data)
+# summary(audi1_age_model)
+
+# Boxplot for price by age for Audi A1
+ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(
+    title = "Boxplot of Price by Age for Audi A1",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+      
+```
+      
+After Visualizing the data with a box plot we create a scatter plot with a regression line to see the change in price by age
+```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+ audi_a3_data <- data %>% filter(make_model == "Audi A3")
+
+# Scatter plot with regression line
+ggplot(audi_a3_data, aes(x = age, y = price)) +
+geom_point(alpha = 0.6) +
+geom_smooth(method = "lm", se = TRUE, color = "red") +
+labs(
+title = "Price vs Age for Audi A3",
+x = "Age (years)",
+y = "Price (in units)"
+) +
+theme_minimal()
+
+# audi_age_model <- lm(price ~ age, data = audi_a3_data)
+# summary(audi_age_model)
+# 
+
+# Boxplot
+# ggplot(audi_a3_data, aes(x = factor(age), y = price)) +
+#   geom_boxplot(fill = "pink") +
+#   labs(
+#     title = "Boxplot of Price by Age for Audi A3",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+
+opel_insignia_data <- data %>% filter(make_model == "Opel Insignia")
+
+# Scatter plot with regression line
+ggplot(opel_insignia_data, aes(x = age, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  labs(
+    title = "Price vs Age for Opel Insignia",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+# opel_age_model <- lm(price ~ age, data = opel_insignia_data)
+# summary(opel_age_model)
+
+# Boxplot
+# ggplot(opel_insignia_data, aes(x = factor(age), y = price)) +
+#   geom_boxplot(fill = "lightblue") +
+#   labs(
+#     title = "Boxplot of Price by Age for Opel Insignia",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+# audi_a1_data <- data %>% filter(make_model == "Audi A1")
+
+# Scatter plot with regression line
+ggplot(audi_a1_data, aes(x = age, y = price)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "green") +
+  labs(
+    title = "Price vs Age for Audi A1",
+    x = "Age (years)",
+    y = "Price (in units)"
+  ) +
+  theme_minimal()
+
+# audi1_age_model <- lm(price ~ age, data = audi_a1_data)
+# summary(audi1_age_model)
+
+# Boxplot for price by age for Audi A1
+# ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
+#   geom_boxplot(fill = "lightgreen") +
+#   labs(
+#     title = "Boxplot of Price by Age for Audi A1",
+#     x = "Age (years)",
+#     y = "Price (in units)"
+#   ) +
+#   theme_minimal()
+#       
+```
+As expected the age has a large affect on the price of the car decreasing over time we then take the regression line and find the regression coefficient to determine the amount the price changes per year per model of car
 
