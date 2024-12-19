@@ -130,6 +130,7 @@ summary_table <- data %>%
   filter(make_model %in% c("Audi A3", "Opel Insignia", "Audi A1")) %>%
   group_by(make_model) %>%
   summarise(
+    #remove all the nulls and nonexisting data
     Avg_Price = mean(price, na.rm = TRUE),
     Median_Price = median(price, na.rm = TRUE),
     Min_Price = min(price, na.rm = TRUE),
@@ -159,6 +160,7 @@ x = "Age (years)",
 y = "Price (in units)"
 ) +
 theme_minimal()
+#getting the reggression coefficient
 audi_age_model <- lm(price ~ age, data = audi_a3_data)
 summary(audi_age_model)
 
@@ -186,6 +188,7 @@ ggplot(opel_insignia_data, aes(x = age, y = price)) +
   ) +
   theme_minimal()
 
+#getting the reggression coefficient
 opel_age_model <- lm(price ~ age, data = opel_insignia_data)
 summary(opel_age_model)
 
@@ -211,6 +214,7 @@ ggplot(audi_a1_data, aes(x = age, y = price)) +
   ) +
   theme_minimal()
 
+#getting the reggression coefficient
 audi1_age_model <- lm(price ~ age, data = audi_a1_data)
 summary(audi1_age_model)
 
@@ -223,8 +227,11 @@ ggplot(audi_a1_data, aes(x = factor(age), y = price)) +
     y = "Price (in units)"
   ) +
   theme_minimal()
+
 {r mileModels, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+
 #scatter plot
+
 ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
   geom_point(alpha = 0.6) +
   geom_smooth(method = "lm", se = TRUE, color = "red") +
@@ -236,6 +243,7 @@ ggplot(audi_a3_data, aes(x = mileage_km, y = price)) +
   ) +
   theme_minimal()
 
+#getting the reggression coefficient
 audi_mile_model <- lm(price ~ mileage_km, data = audi_a3_data)
 summary(audi_mile_model)
 
